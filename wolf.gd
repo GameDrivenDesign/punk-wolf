@@ -14,7 +14,8 @@ var shoot_short_interval = 1 #s
 var shoot_long_interval = 3 #s
 var shoot_spawn_interval = 0.2 #s
 var current_spawn: float = 0
-var color_index: int = randi() % 5
+#var color_index: int = randi() % 5
+var color: Color
 var short_time: float = 0
 
 func _ready():
@@ -51,7 +52,7 @@ func _physics_process(delta: float):
 func spawn_projectile():
 	var projectile = preload("res://projectiles/Projectile.tscn").instance()
 	projectile.position = $ProjectileSpawn.global_position
-	projectile.set_color(color_index)
+	projectile.set_color(color)
 	get_parent().add_child(projectile)
 	return projectile
 
