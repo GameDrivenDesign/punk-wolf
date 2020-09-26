@@ -5,7 +5,7 @@ var stage_count = 0
 var score: int = 0
 
 func _ready():
-	stage_count = 4
+	stage_count = 0
 	next_stage()
 	var err = $Sheep.connect("hit", self, "sheep_hit")
 	if (err != OK):
