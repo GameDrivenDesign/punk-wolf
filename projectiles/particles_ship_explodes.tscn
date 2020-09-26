@@ -42,6 +42,7 @@ autostart = true
 
 [node name="DestructionPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+volume_db = 8.078
 autoplay = true
 bus = "SFX"
 [connection signal="timeout" from="Timer" to="." method="queue_free"]

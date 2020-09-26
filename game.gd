@@ -28,7 +28,7 @@ func enemy_killed():
 		call_deferred("next_stage")
 
 func sheep_hit():
-	# update_score(-10)
+	update_score(-1)
 	update_hitpoints()
 
 func update_score(delta):
@@ -44,6 +44,11 @@ func update_hitpoints():
 func next_stage():
 	enemy_count = 0
 	stage_count += 1
+	
+	$camera/CanvasLayer/readyLabel.visible = true
+	yield(get_tree().create_timer(2), "timeout")
+	$camera/CanvasLayer/readyLabel.visible = false
+	
 	if stage_count == 1:
 		var colors = [Global.r, Global.rb, Global.r, Global.rbb]
 		var positions = [150, 400, 700, 780]
@@ -79,6 +84,24 @@ func next_stage():
 			e.shoot_spread_angle = 2
 			e.shoot_long_interval = 2
 			e.shoot_spawn_interval = 0.05
+			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
+			e.color = colors[i]
+	elif stage_count == 5:
+		var positions = [200, 400, 500, 700, 800]
+		var colors = [Global.rrb, Global.rbb, Global.rbb, Global.rrb, Global.r]
+		for i in range(5):
+			var e = spawn_enemy("res://wolf.tscn")
+			e.hitpoints = 200
+			e.shoot_spawn_interval = 0.5
+			e.shoot_damage = 30
+			e.shoot_projectile_speed = 400
+		positions = [200, 400, 500, 700]
+		colors = [Global.rrb, Global.rbb, Global.rrb, Global.r]
+		for i in range(4):
+			var e = spawn_enemy("res://wolf.tscn")
+			e.shoot_spread_angle = 5
+			e.shoot_long_interval = 0.9
+			e.shoot_spawn_interval = 0.1
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
 	else:
