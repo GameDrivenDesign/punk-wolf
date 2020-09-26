@@ -18,17 +18,56 @@ glow_bicubic_upscale = true
 [node name="game" type="Node2D"]
 
 [node name="background" type="Sprite" parent="."]
-position = Vector2( 512, 300 )
+position = Vector2( 798.055, 452.563 )
 texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="Node2D" parent="." instance=ExtResource( 3 )]
-position = Vector2( 503.239, 541.884 )
+position = Vector2( 478.012, 834.516 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 276.389, 175.96 )
 
 [node name="Node2D3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 546.337, 155.194 )
+
+[node name="Node2D4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 756.561, 185.466 )
+
+[node name="Node2D5" parent="." instance=ExtResource( 2 )]
+position = Vector2( 975.194, 155.194 )
+
+[node name="Node2D6" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1173.65, 168.648 )
+
+[node name="Node2D7" parent="." instance=ExtResource( 2 )]
+position = Vector2( 864.196, 215.739 )
+
+[node name="Node2D12" parent="." instance=ExtResource( 2 )]
+position = Vector2( 929.786, 294.783 )
+
+[node name="Node2D13" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1148.42, 264.511 )
+
+[node name="Node2D14" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1346.87, 277.965 )
+
+[node name="Node2D15" parent="." instance=ExtResource( 2 )]
+position = Vector2( 1037.42, 325.055 )
+
+[node name="Node2D8" parent="." instance=ExtResource( 2 )]
+position = Vector2( 627.063, 234.238 )
+
+[node name="Node2D9" parent="." instance=ExtResource( 2 )]
+position = Vector2( 185.572, 258.368 )
+
+[node name="Node2D10" parent="." instance=ExtResource( 2 )]
+position = Vector2( 455.52, 237.602 )
+
+[node name="Node2D11" parent="." instance=ExtResource( 2 )]
+position = Vector2( 536.246, 316.646 )
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
