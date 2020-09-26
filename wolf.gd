@@ -9,11 +9,12 @@ var position_left: float = 0
 var direction: Vector2
 var hitpoints = 35
 
-const SHORT_TIME = 1#s
-const LONG_TIME = 3 #s
-const SPAWNINTERVAL = 0.2 #s
+var shoot_spread_angle = 0
+var shoot_short_interval = 1 #s
+var shoot_long_interval = 3 #s
+var shoot_spawn_interval = 0.2 #s
 var current_spawn: float = 0
-var color_index: int = randi()%5
+var color_index: int = randi() % 5
 var short_time: float = 0
 
 func _ready():
@@ -34,16 +35,24 @@ func _physics_process(delta: float):
 
 	current_spawn += delta
 	short_time += delta
-	if current_spawn >= LONG_TIME:
+	if current_spawn >= shoot_long_interval:
 		current_spawn = 0
 		short_time = 0
-	if current_spawn <= SHORT_TIME:
-		if short_time >= SPAWNINTERVAL:
+	if current_spawn <= shoot_short_interval:
+		if short_time >= shoot_spawn_interval:
 			short_time = 0
-			var projectile = preload("res://projectiles/Projectile.tscn").instance()
-			projectile.position = $ProjectileSpawn.global_position
-			projectile.set_color(color_index)
-			get_parent().add_child(projectile)
+			
+			spawn_projectile()
+			if shoot_spread_angle > 0:
+				spawn_projectile().rotation_degrees = shoot_spread_angle
+				spawn_projectile().rotation_degrees = -shoot_spread_angle
+
+func spawn_projectile():
+	var projectile = preload("res://projectiles/Projectile.tscn").instance()
+	projectile.position = $ProjectileSpawn.global_position
+	projectile.set_color(color_index)
+	get_parent().add_child(projectile)
+	return projectile
 
 func take_damage(damage, point):
 	hitpoints -= damage

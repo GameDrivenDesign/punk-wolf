@@ -1,5 +1,4 @@
 extends Area2D
-const DIRECTION = Vector2.DOWN
 
 var speed = 800
 var damage = 10

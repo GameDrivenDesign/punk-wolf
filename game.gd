@@ -5,6 +5,7 @@ var stage_count = 0
 var score: int = 0
 
 func _ready():
+	stage_count = 0
 	next_stage()
 	$Sheep.connect("hit", self, "sheep_hit")
 
@@ -36,7 +37,16 @@ func next_stage():
 	stage_count += 1
 	if stage_count == 1:
 		for _i in range(3):
-			spawn_enemy("res://wolf.tscn")
+			var e = spawn_enemy("res://wolf.tscn")
+			e.shoot_spread_angle = 15
 	if stage_count == 2:
-		for _i in range(56):
-			spawn_enemy("res://wolf.tscn")
+		for _i in range(6):
+			var e = spawn_enemy("res://wolf.tscn")
+			e.shoot_long_interval = 0.9
+			e.shoot_spawn_interval = 0.1
+	if stage_count == 3:
+		for _i in range(4):
+			var e = spawn_enemy("res://wolf.tscn")
+			e.shoot_spread_angle = 5
+			e.shoot_long_interval = 0.9
+			e.shoot_spawn_interval = 0.1
