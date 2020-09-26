@@ -44,6 +44,7 @@ func shoot(cannon_index):
 		if was_shot_recently((cannon_index + 1) % 2):
 			p.position = $MiddleSpawnPosition.global_position
 			p.scale.y = 4
+			p.damage = 50
 			p.set_modulate(Color(4, 4, 4))
 			
 			if last_projectile != null and last_projectile.is_inside_tree():
@@ -64,9 +65,10 @@ func _physics_process(delta):
 	timeout_cannons[0] -= delta
 	timeout_cannons[1] -= delta
 	
+# warning-ignore:return_value_discarded
 	move_and_collide(velocity * delta)
 
-func take_damage(amount, point):
+func take_damage(amount, _point):
 	hitpoints -= amount
 	emit_signal("hit")
 	$"../camera".add_trauma(1)

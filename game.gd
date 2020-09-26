@@ -5,9 +5,11 @@ var stage_count = 0
 var score: int = 0
 
 func _ready():
-	stage_count = 3
+	stage_count = 0
 	next_stage()
-	$Sheep.connect("hit", self, "sheep_hit")
+	var err = $Sheep.connect("hit", self, "sheep_hit")
+	if (err != OK):
+		print(err)
 
 func spawn_enemy(file):
 	var enemy = load(file).instance()
@@ -67,13 +69,13 @@ func next_stage():
 
 # Send a highscore to the server.
 # Returns the position on the scoreboard (1-based).
-func send_highscore(game: String, player: String, score: int):
+func send_highscore(game: String, player: String, highscore: int):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	
 	var url = ("https://scores.tmbe.me/score?game=" + game.percent_encode() +
 		"&player=" + player.percent_encode() +
-		"&score=" + str(score).percent_encode())
+		"&score=" + str(highscore).percent_encode())
 	
 	if http_request.request(url, [], true, HTTPClient.METHOD_POST) != OK:
 		print("Sending highscore failed")

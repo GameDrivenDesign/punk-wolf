@@ -13,15 +13,6 @@ script = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
-position = Vector2( 0, 1.66666 )
-amount = 10
-lifetime = 0.1
-local_coords = false
-gravity = Vector2( 0, 0 )
-scale_amount = 2.0
-
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 
