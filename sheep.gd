@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal hit
 
-export (int) var speed = 200
+export (int) var speed = 600
 
 var velocity = Vector2()
 const max_hitpoints = 500
@@ -16,14 +16,17 @@ var last_projectile
 func _ready():
 	add_child(preload("res://shield.tscn").instance())
 
-func get_input():
+func process_input():
 	velocity = Vector2()
+	var right_border = get_viewport_rect().size.x
+	var left_border = 0
+	var padding = 10
 	
-	if Input.is_action_pressed('ui_right'):
+	if Input.is_action_pressed('ui_right') && position.x < right_border-padding:
 		velocity.x += 1
-	if Input.is_action_pressed('ui_left'):
+	if Input.is_action_pressed('ui_left') && position.x > padding:
 		velocity.x -= 1
-	
+		
 	if Input.is_action_just_pressed("shoot_0"):
 		shoot(0)
 	if Input.is_action_just_pressed("shoot_1"):
@@ -61,7 +64,7 @@ func shoot(cannon_index):
 
 
 func _physics_process(delta):
-	get_input()
+	process_input()
 	
 	timeout_cannons[0] -= delta
 	timeout_cannons[1] -= delta

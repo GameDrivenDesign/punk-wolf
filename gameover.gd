@@ -28,5 +28,13 @@ func send_highscore(game: String, player: String, score: int):
 	get_tree().change_scene("res://newgame.tscn")
 	return position
 
-func _on_Button_pressed():
+func send_my_highscore():
 	send_highscore(Global.GAME_NAME, $TextEdit.text, Global.highscore)
+
+func _on_Button_pressed():
+	send_my_highscore()
+
+func _on_TextEdit_gui_input(event):
+	if(event.scancode == KEY_ENTER):
+		send_my_highscore()
+	pass # Replace with function body.
