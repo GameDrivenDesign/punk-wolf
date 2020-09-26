@@ -126,7 +126,7 @@ func fade_music_if_needed(delta):
 		var current = get_node("Music").get_child(music_loop_current)
 		var target = get_node("Music").get_child(music_loop_fade_target)
 		
-		var progress = 0.0
+		var progress = 0.0 # will range from 0.0 to 1.0
 		
 		var pos = current.get_playback_position()
 		if pos > LOOP_DURATION / 2.0:
@@ -137,11 +137,9 @@ func fade_music_if_needed(delta):
 			progress = (pos + FADE_DURATION / 2.0) / FADE_DURATION
 			
 			
-		var clamped = clamp(progress, 0.0, 1.0)
+		var clamped = clamp(progress, 0.0, 1.0) # since it's started far before the actual fading should happen, this needs to be clamped
 		current.volume_db = -pow(2.0, clamped * 4.0) - 1.0
 		target.volume_db = -pow(2.0, (1.0 - clamped) * 4.0) - 1.0
-		
-		print("progress: ", progress)
 		
 		if progress > 1.0:
 			music_loop_fade_active = false
@@ -154,6 +152,5 @@ func fade_music_if_needed(delta):
 			var current = get_node("Music").get_child(music_loop_current)
 			var pos = current.get_playback_position()
 			if pos >= LOOP_DURATION / 2.0 and pos < LOOP_DURATION - FADE_DURATION / 2.0:
-				print("starting fade")
 				music_loop_fade_target = stage_count
 				music_loop_fade_active = true
