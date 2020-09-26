@@ -16,8 +16,10 @@ _global_script_class_icons={
 [application]
 
 config/name="Punk-wolf"
+run/main_scene="res://game.tscn"
 config/icon="res://icon.png"
 
 [rendering]
 
+environment/default_clear_color=Color( 0.0784314, 0.0235294, 0, 1 )
 environment/default_environment="res://default_env.tres"
