@@ -44,6 +44,11 @@ func update_hitpoints():
 func next_stage():
 	enemy_count = 0
 	stage_count += 1
+	
+	$camera/CanvasLayer/readyLabel.visible = true
+	yield(get_tree().create_timer(2), "timeout")
+	$camera/CanvasLayer/readyLabel.visible = false
+	
 	if stage_count == 1:
 		var colors = [Global.r, Global.rb, Global.r, Global.rbb]
 		var positions = [150, 400, 700, 780]

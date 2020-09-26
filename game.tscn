@@ -55,6 +55,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="readyLabel" type="Label" parent="camera/CanvasLayer"]
+margin_left = 696.791
+margin_top = 431.592
+margin_right = 915.791
+margin_bottom = 473.592
+rect_pivot_offset = Vector2( 106.685, 22.0867 )
+custom_fonts/font = ExtResource( 10 )
+text = "GET READY!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="background" type="Sprite" parent="."]
 position = Vector2( 798.055, 452.563 )
 texture = ExtResource( 1 )
