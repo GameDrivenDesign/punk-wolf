@@ -5,7 +5,7 @@ var stage_count = 0
 var score: int = 0
 
 func _ready():
-	stage_count = 3
+	stage_count = 0
 	next_stage()
 	$Sheep.connect("hit", self, "sheep_hit")
 
@@ -47,23 +47,25 @@ func next_stage():
 		for _i in range(3):
 			var e = spawn_enemy("res://wolf.tscn")
 			e.shoot_spread_angle = 15
-	if stage_count == 2:
+	elif stage_count == 2:
 		for _i in range(6):
 			var e = spawn_enemy("res://wolf.tscn")
 			e.shoot_long_interval = 0.9
 			e.shoot_spawn_interval = 0.1
-	if stage_count == 3:
+	elif stage_count == 3:
 		for _i in range(4):
 			var e = spawn_enemy("res://wolf.tscn")
 			e.shoot_spread_angle = 5
 			e.shoot_long_interval = 0.9
 			e.shoot_spawn_interval = 0.1
-	if stage_count == 4:
+	elif stage_count == 4:
 		for _i in range(9):
 			var e = spawn_enemy("res://wolf.tscn")
 			e.shoot_spread_angle = 2
-			e.shoot_long_interval = 0.9
+			e.shoot_long_interval = 2
 			e.shoot_spawn_interval = 0.05
+	else:
+		send_highscore("Punk Wolf", "Sebastian", score)
 
 # Send a highscore to the server.
 # Returns the position on the scoreboard (1-based).
