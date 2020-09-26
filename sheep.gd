@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal hit
 
-export (int) var speed = 600
+export (int) var speed = 300
 
 var velocity = Vector2()
 const max_hitpoints = 500
@@ -18,13 +18,12 @@ func _ready():
 
 func process_input():
 	velocity = Vector2()
-	var right_border = get_viewport_rect().size.x
-	var left_border = 0
-	var padding = 10
+	var left_border = Global.PLAYER_PADDING_HORIZONTAL.x
+	var right_border = get_viewport_rect().size.x - Global.PLAYER_PADDING_HORIZONTAL.y
 	
-	if Input.is_action_pressed('ui_right') && position.x < right_border-padding:
+	if Input.is_action_pressed('ui_right') && position.x < right_border:
 		velocity.x += 1
-	if Input.is_action_pressed('ui_left') && position.x > padding:
+	if Input.is_action_pressed('ui_left') && position.x > left_border:
 		velocity.x -= 1
 		
 	if Input.is_action_just_pressed("shoot_0"):
