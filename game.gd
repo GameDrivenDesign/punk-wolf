@@ -7,7 +7,9 @@ var score: int = 0
 func _ready():
 	stage_count = 0
 	next_stage()
-	$Sheep.connect("hit", self, "sheep_hit")
+	var err = $Sheep.connect("hit", self, "sheep_hit")
+	if (err != OK):
+		print(err)
 
 func spawn_enemy(file):
 	var enemy = load(file).instance()
@@ -23,7 +25,7 @@ func enemy_killed():
 	enemy_count -= 1
 	update_score(300)
 	if enemy_count <= 0:
-		next_stage()
+		call_deferred("next_stage")
 
 func sheep_hit():
 	# update_score(-10)
