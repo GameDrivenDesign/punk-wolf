@@ -1,0 +1,22 @@
+[gd_scene format=2]
+
+[node name="particles_deflected" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+rotation = -1.57079
+amount = 20
+lifetime = 0.2
+explosiveness = 1.0
+lifetime_randomness = 1.0
+spread = 77.91
+gravity = Vector2( 0, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 1.0
+scale_amount = 4.0
+scale_amount_random = 1.0
+color = Color( 3, 3, 3, 1 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+[connection signal="timeout" from="Timer" to="." method="queue_free"]

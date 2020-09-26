@@ -25,4 +25,8 @@ func _on_Projectile_body_entered(body):
 func _on_Projectile_area_entered(area):
 	if area.is_in_group("shield"):
 		if area.is_blocked(self):
+			print("Block")
+			var fx = preload("res://projectiles/particles_deflected.tscn").instance()
+			fx.position = global_position
+			get_parent().add_child(fx)
 			queue_free()
