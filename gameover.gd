@@ -1,5 +1,7 @@
 extends Node2D
 
+var loading = false
+
 func _ready():
 	$score.text = str(Global.highscore)
 	$TextEdit.grab_focus()
@@ -29,12 +31,13 @@ func send_highscore(game: String, player: String, score: int):
 	return position
 
 func send_my_highscore():
-	send_highscore(Global.GAME_NAME, $TextEdit.text, Global.highscore)
+	if !loading && len($TextEdit.text) > 0:
+		loading = true
+		$Button.disabled = true
+		send_highscore(Global.GAME_NAME, $TextEdit.text, Global.highscore)
 
 func _on_Button_pressed():
 	send_my_highscore()
 
-func _on_TextEdit_gui_input(event):
-	if(event.scancode == KEY_ENTER):
-		send_my_highscore()
-	pass # Replace with function body.
+func _on_TextEdit_text_entered(_new_text):
+	send_my_highscore()

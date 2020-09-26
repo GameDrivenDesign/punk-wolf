@@ -40,6 +40,10 @@ margin_left = 476.782
 margin_top = 355.436
 margin_right = 669.782
 margin_bottom = 389.436
+placeholder_text = "Your name ..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Button" type="Button" parent="."]
 margin_left = 476.631
@@ -50,5 +54,5 @@ text = "Submit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="gui_input" from="TextEdit" to="." method="_on_TextEdit_gui_input"]
+[connection signal="text_entered" from="TextEdit" to="." method="_on_TextEdit_text_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
