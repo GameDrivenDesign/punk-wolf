@@ -26,6 +26,9 @@ func process_input():
 	if Input.is_action_pressed('ui_left') && position.x > left_border:
 		velocity.x -= 1
 		
+	if (Input.is_action_pressed('ui_right') && position.x < right_border) || (Input.is_action_pressed('ui_left') && position.x > left_border):
+		$RobotSheepPlayer.play()
+		
 	if Input.is_action_just_pressed("shoot_0"):
 		shoot(0)
 	if Input.is_action_just_pressed("shoot_1"):
