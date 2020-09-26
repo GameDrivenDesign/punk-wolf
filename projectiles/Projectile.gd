@@ -1,8 +1,8 @@
 extends Area2D
 const DIRECTION = Vector2.DOWN
 const SPEED = 800
-const DAMAGE = 10
 
+var damage = 10
 var target_group = "sheep"
 var b = Color(1, 1, 7)
 var r = Color(4, 1, 1)
@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 func _on_Projectile_body_entered(body):
 	if body.is_in_group(target_group):
-		body.take_damage(DAMAGE)
+		body.take_damage(damage)
 		queue_free()
 
 func _on_Projectile_area_entered(area):

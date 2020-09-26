@@ -19,15 +19,16 @@ func is_blocked(projectile):
 	return projectile_vector.distance_to(shield_vector) < SHIELD_COLOR_TOLERANCE
 
 func _process(delta):
-	if Input.is_key_pressed(KEY_R):
+	if Input.is_action_pressed("shield_red"):
 		r += delta * 5
 	else:
 		r -= delta * DECAY
 	
-	if Input.is_key_pressed(KEY_T):
+	if Input.is_action_pressed("shield_blue"):
 		b += delta * 5
 	else:
 		b -= delta * DECAY
 	r = max(1, min(4, r))
 	b = max(1, min(4, b))
+	
 	set_modulate(Color(r, 1, b))

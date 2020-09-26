@@ -27,7 +27,7 @@ color_ramp = SubResource( 3 )
 [node name="Particles2D" type="Particles2D" parent="."]
 rotation = -0.00258532
 scale = Vector2( 0.3, 0.3 )
-amount = 100
+amount = 30
 lifetime = 0.3
 explosiveness = 1.0
 randomness = 1.0
