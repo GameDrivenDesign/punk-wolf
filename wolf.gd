@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal killed
 
-const SPEED = 100.0  
+const SPEED = 200.0  
 var to_right = true
 var position_right: float = 0
 var position_left: float = 0
