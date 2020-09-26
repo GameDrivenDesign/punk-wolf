@@ -1,7 +1,7 @@
 extends Area2D
 const DIRECTION = Vector2.DOWN
-const SPEED = 800
 
+var speed = 800
 var damage = 10
 var target_group = "sheep"
 var b = Color(1, 1, 7)
@@ -15,7 +15,7 @@ func set_color(i):
 	set_modulate(colors[i])
 
 func _physics_process(delta):
-	position += (transform.y.normalized() * delta * SPEED)
+	position += (transform.y.normalized() * delta * speed)
 
 func _on_Projectile_body_entered(body):
 	if body.is_in_group(target_group):

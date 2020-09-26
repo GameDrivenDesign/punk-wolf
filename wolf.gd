@@ -1,29 +1,32 @@
 extends KinematicBody2D
 
+signal killed
+
 const SPEED = 100.0  
 var to_right = true
-var position_right = 0
-var position_left = 0
-var direction
+var position_right: float = 0
+var position_left: float = 0
+var direction: Vector2
+var hitpoints = 35
 
 const SHORT_TIME = 1#s
 const LONG_TIME = 3 #s
 const SPAWNINTERVAL = 0.2 #s
-var current_spawn = 0
-var color_index = randi()%5
-var short_time = 0
+var current_spawn: float = 0
+var color_index: int = randi()%5
+var short_time: float = 0
 
 func _ready():
 	current_spawn = randf() * 3
 	to_right = true if randf() > 0.5 else false
 	position_right = get_viewport_rect().size.x
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	if to_right:
 		direction = Vector2(position_right - position.x, 0).normalized()
-	else: 
+	else:
 		direction = Vector2(position_left - position.x, 0).normalized()
-	var motion = direction * SPEED * delta
+	var motion: Vector2 = direction * SPEED * delta
 	position += motion
 	if position_right <= position.x || position_left >= position.x:
 		to_right = not to_right
@@ -42,7 +45,11 @@ func _physics_process(delta):
 			get_parent().add_child(projectile)
 
 func take_damage(damage):
-	var fx = preload("res://projectiles/particles_ship_explodes.tscn").instance()
-	fx.position = global_position
-	get_parent().add_child(fx)
-	queue_free()
+	hitpoints -= damage
+	
+	if hitpoints <= 0:
+		var fx = preload("res://projectiles/particles_ship_explodes.tscn").instance()
+		fx.position = global_position
+		get_parent().add_child(fx)
+		queue_free()
+		emit_signal("killed")

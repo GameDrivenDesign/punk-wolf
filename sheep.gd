@@ -30,6 +30,7 @@ func shoot(cannon_index):
 	if timeout_cannons[cannon_index] <= 0:
 		var p = preload("res://projectiles/Projectile.tscn").instance()
 		p.rotation_degrees = 180
+		p.speed = 1500
 		p.target_group = "wolf"
 		p.position = global_position
 		p.set_modulate(Color(1, 4, 1))
