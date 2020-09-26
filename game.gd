@@ -26,11 +26,19 @@ func enemy_killed():
 		next_stage()
 
 func sheep_hit():
-	update_score(-10)
+	# update_score(-10)
+	update_hitpoints()
 
 func update_score(delta):
 	score += delta
-	$camera/CanvasLayer/Label.text = str(score).pad_zeros(7)
+	$camera/CanvasLayer/score.text = str(score).pad_zeros(7)
+
+func update_hitpoints():
+	if $Sheep.hitpoints < 0:
+		get_tree().set_paused(true)
+		send_highscore("Punk Wolf", "Sebastian", score)
+	else:
+		$camera/CanvasLayer/hitpoints.rect_scale.x = float($Sheep.hitpoints) / $Sheep.max_hitpoints
 
 func next_stage():
 	enemy_count = 0
@@ -50,3 +58,26 @@ func next_stage():
 			e.shoot_spread_angle = 5
 			e.shoot_long_interval = 0.9
 			e.shoot_spawn_interval = 0.1
+
+# Send a highscore to the server.
+# Returns the position on the scoreboard (1-based).
+func send_highscore(game: String, player: String, score: int):
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	
+	var url = ("https://scores.tmbe.me/score?game=" + game.percent_encode() +
+		"&player=" + player.percent_encode() +
+		"&score=" + str(score).percent_encode())
+	
+	if http_request.request(url, [], true, HTTPClient.METHOD_POST) != OK:
+		print("Sending highscore failed")
+		return -1
+	var response = yield(http_request, "request_completed")
+	if response[1] != 200:
+		print("Sending highscore returned " + str(response[1]))
+		return -1
+	remove_child(http_request)
+	
+	var position = JSON.parse(response[3].get_string_from_utf8()).result["position"]
+	print("Highscore submitted! - You scored position " + str(position))
+	return position

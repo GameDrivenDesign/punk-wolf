@@ -29,12 +29,21 @@ max_roll = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="camera"]
 
-[node name="Label" type="Label" parent="camera/CanvasLayer"]
+[node name="score" type="Label" parent="camera/CanvasLayer"]
 margin_left = 1491.32
 margin_top = 45.306
 margin_right = 1531.32
 margin_bottom = 59.306
 text = "0000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hitpoints" type="ColorRect" parent="camera/CanvasLayer"]
+margin_top = 880.0
+margin_right = 1600.0
+margin_bottom = 900.0
+color = Color( 0.984314, 0, 0, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
