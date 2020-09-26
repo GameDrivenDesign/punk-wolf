@@ -7,7 +7,8 @@ var to_right = true
 var position_right: float = 0
 var position_left: float = 0
 var direction: Vector2
-var hitpoints = 35
+const MAX_HITPOINTS = 35
+var hitpoints = MAX_HITPOINTS
 
 var shoot_spread_angle = 0
 var shoot_short_interval = 1 #s
@@ -58,6 +59,7 @@ func spawn_projectile():
 
 func take_damage(damage, point):
 	hitpoints -= damage
+	$Eyes.set_modulate(Color(2.5 * (hitpoints / float(MAX_HITPOINTS)) + 0.2, 1, 1))
 	
 	if hitpoints <= 0:
 		var fx = preload("res://projectiles/particles_ship_explodes.tscn").instance()

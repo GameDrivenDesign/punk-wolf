@@ -25,12 +25,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect2" type="ColorRect" parent="."]
+[node name="Eyes" type="ColorRect" parent="."]
 margin_left = -10.37
 margin_top = 12.8425
 margin_right = 10.63
 margin_bottom = 13.8425
-color = Color( 25.43, 0.04, 0.04, 1 )
+color = Color( 5, 0.04, 0.04, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
