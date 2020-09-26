@@ -25,7 +25,7 @@ func enemy_killed():
 	enemy_count -= 1
 	update_score(300)
 	if enemy_count <= 0:
-		next_stage()
+		call_deferred("next_stage")
 
 func sheep_hit():
 	# update_score(-10)
