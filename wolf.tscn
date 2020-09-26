@@ -5,8 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.9966, 26.4577 )
 
-[node name="Node2D" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="Wolf" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,3 +30,6 @@ color = Color( 25.43, 0.04, 0.04, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ProjectileSpawn" type="Position2D" parent="."]
+position = Vector2( 0, 22.3611 )
