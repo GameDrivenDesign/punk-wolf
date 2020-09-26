@@ -24,7 +24,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Node2D" parent="." instance=ExtResource( 3 )]
+[node name="Sheep" parent="." instance=ExtResource( 3 )]
 position = Vector2( 478.012, 834.516 )
 
 [node name="Node2D2" parent="." instance=ExtResource( 2 )]
