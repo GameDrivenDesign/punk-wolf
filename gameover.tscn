@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://gameover.gd" type="Script" id=1]
+[ext_resource path="res://fonts/audiowide.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/audiowide-large.tres" type="DynamicFont" id=3]
 
 [node name="gameover" type="Node2D"]
 script = ExtResource( 1 )
@@ -10,46 +12,51 @@ margin_left = 469.342
 margin_top = 225.16
 margin_right = 647.342
 margin_bottom = 239.16
+custom_fonts/font = ExtResource( 2 )
 text = "Congratulations! Your score:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="score" type="Label" parent="."]
-margin_left = 475.699
-margin_top = 271.223
-margin_right = 653.699
-margin_bottom = 285.223
+margin_left = 505.35
+margin_top = 266.551
+margin_right = 683.35
+margin_bottom = 308.551
+custom_fonts/font = ExtResource( 3 )
 text = "123123123"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="."]
-margin_left = 475.578
-margin_top = 328.504
-margin_right = 653.578
-margin_bottom = 342.504
+margin_left = 472.079
+margin_top = 371.531
+margin_right = 650.079
+margin_bottom = 392.531
+custom_fonts/font = ExtResource( 2 )
 text = "Enter your Name:"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TextEdit" type="LineEdit" parent="."]
-margin_left = 476.782
-margin_top = 355.436
-margin_right = 669.782
-margin_bottom = 389.436
+margin_left = 473.95
+margin_top = 399.798
+margin_right = 666.95
+margin_bottom = 433.798
+custom_fonts/font = ExtResource( 2 )
 placeholder_text = "Your name ..."
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Button" type="Button" parent="."]
-margin_left = 476.631
-margin_top = 399.123
-margin_right = 543.631
-margin_bottom = 419.123
+margin_left = 473.799
+margin_top = 443.485
+margin_right = 546.799
+margin_bottom = 470.485
+custom_fonts/font = ExtResource( 2 )
 text = "Submit"
 __meta__ = {
 "_edit_use_anchors_": false
