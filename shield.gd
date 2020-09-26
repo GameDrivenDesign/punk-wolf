@@ -1,7 +1,7 @@
 extends Node2D
 
 const DECAY = 8
-const SHIELD_COLOR_TOLERANCE = 0.5
+const SHIELD_COLOR_TOLERANCE = 0.3
 var r = 1
 var b = 1
 
@@ -14,8 +14,8 @@ func _ready():
 func is_blocked(projectile):
 	var projectile_color = projectile.get_modulate()
 	var color = get_modulate()
-	var shield_vector = Vector3(color.r, color.g, color.b).normalized()
-	var projectile_vector = Vector3(projectile_color.r, projectile_color.g, projectile_color.b).normalized()
+	var shield_vector = Vector3(color.r - 1, color.g - 1, color.b - 1).normalized()
+	var projectile_vector = Vector3(projectile_color.r - 1, projectile_color.g - 1, projectile_color.b - 1).normalized()
 	return projectile_vector.distance_to(shield_vector) < SHIELD_COLOR_TOLERANCE
 
 func _process(delta):

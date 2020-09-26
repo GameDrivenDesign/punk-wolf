@@ -17,7 +17,9 @@ func get_input():
 	if Input.is_action_just_pressed("ui_up"):
 		var p = preload("res://projectiles/Projectile.tscn").instance()
 		p.rotation_degrees = 180
+		p.target_group = "wolf"
 		p.position = global_position
+		p.set_modulate(Color(1, 4, 1))
 		get_parent().add_child(p)
 	velocity = velocity.normalized() * speed
 

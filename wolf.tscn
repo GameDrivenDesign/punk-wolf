@@ -5,7 +5,9 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.9966, 26.4577 )
 
-[node name="Wolf" type="KinematicBody2D"]
+[node name="Wolf" type="KinematicBody2D" groups=[
+"wolf",
+]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

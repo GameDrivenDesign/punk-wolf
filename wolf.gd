@@ -40,3 +40,9 @@ func _physics_process(delta):
 			projectile.position = $ProjectileSpawn.global_position
 			projectile.set_color(color_index)
 			get_parent().add_child(projectile)
+
+func take_damage(damage):
+	var fx = preload("res://projectiles/particles_ship_explodes.tscn").instance()
+	fx.position = global_position
+	get_parent().add_child(fx)
+	queue_free()

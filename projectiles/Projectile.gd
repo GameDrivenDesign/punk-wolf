@@ -1,8 +1,9 @@
 extends Area2D
 const DIRECTION = Vector2.DOWN
-const SPEED = 600
+const SPEED = 800
 const DAMAGE = 10
 
+var target_group = "sheep"
 var b = Color(1, 1, 7)
 var r = Color(4, 1, 1)
 var rb = Color(3.5, 1, 3.5)
@@ -14,18 +15,16 @@ func set_color(i):
 	set_modulate(colors[i])
 
 func _physics_process(delta):
-	position += (DIRECTION * delta * SPEED)
+	position += (transform.y.normalized() * delta * SPEED)
 
 func _on_Projectile_body_entered(body):
-	if body.is_in_group("sheep"):
+	if body.is_in_group(target_group):
 		body.take_damage(DAMAGE)
 		queue_free()
 
-
 func _on_Projectile_area_entered(area):
-	if area.is_in_group("shield"):
+	if area.is_in_group("shield") and target_group == 'sheep':
 		if area.is_blocked(self):
-			print("Block")
 			var fx = preload("res://projectiles/particles_deflected.tscn").instance()
 			fx.position = global_position
 			get_parent().add_child(fx)
