@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Area2D
 const DIRECTION = Vector2.DOWN
 const SPEED = 200
 const DAMAGE = 10
@@ -16,4 +16,9 @@ func _physics_process(delta):
 	var coll = move_and_collide(transform.y * delta * SPEED)
 	if coll and coll.collider.is_in_group("sheep"):
 		coll.collider.take_damage(DAMAGE)
+	position += (DIRECTION * delta * SPEED)
+
+func _on_Projectile_body_entered(body):
+	if body.is_in_group("sheep"):
+		body.take_damage(DAMAGE)
 		queue_free()
