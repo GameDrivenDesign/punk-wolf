@@ -17,6 +17,7 @@ glow_hdr_scale = 2.46
 glow_bicubic_upscale = true
 
 [node name="game" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 5 )
 
 [node name="camera" type="Camera2D" parent="."]

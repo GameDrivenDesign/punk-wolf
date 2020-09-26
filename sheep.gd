@@ -5,7 +5,7 @@ signal hit
 export (int) var speed = 200
 
 var velocity = Vector2()
-const max_hitpoints = 1000
+const max_hitpoints = 500
 var hitpoints = max_hitpoints
 
 const CANNON_TIMEOUT = 1

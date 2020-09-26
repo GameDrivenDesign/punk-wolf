@@ -5,7 +5,7 @@ var stage_count = 0
 var score: int = 0
 
 func _ready():
-	stage_count = 0
+	stage_count = 3
 	next_stage()
 	$Sheep.connect("hit", self, "sheep_hit")
 
@@ -35,8 +35,8 @@ func update_score(delta):
 
 func update_hitpoints():
 	if $Sheep.hitpoints < 0:
-		get_tree().set_paused(true)
 		send_highscore("Punk Wolf", "Sebastian", score)
+		get_tree().paused = true
 	else:
 		$camera/CanvasLayer/hitpoints.rect_scale.x = float($Sheep.hitpoints) / $Sheep.max_hitpoints
 
@@ -58,6 +58,12 @@ func next_stage():
 			e.shoot_spread_angle = 5
 			e.shoot_long_interval = 0.9
 			e.shoot_spawn_interval = 0.1
+	if stage_count == 4:
+		for _i in range(9):
+			var e = spawn_enemy("res://wolf.tscn")
+			e.shoot_spread_angle = 2
+			e.shoot_long_interval = 0.9
+			e.shoot_spawn_interval = 0.05
 
 # Send a highscore to the server.
 # Returns the position on the scoreboard (1-based).
