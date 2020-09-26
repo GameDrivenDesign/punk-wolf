@@ -19,7 +19,7 @@ func _physics_process(delta):
 
 func _on_Projectile_body_entered(body):
 	if body.is_in_group(target_group):
-		body.take_damage(damage)
+		body.take_damage(damage, position)
 		queue_free()
 
 func _on_Projectile_area_entered(area):

@@ -45,7 +45,7 @@ func _physics_process(delta: float):
 			projectile.set_color(color_index)
 			get_parent().add_child(projectile)
 
-func take_damage(damage):
+func take_damage(damage, point):
 	hitpoints -= damage
 	
 	if hitpoints <= 0:
@@ -54,3 +54,8 @@ func take_damage(damage):
 		get_parent().add_child(fx)
 		queue_free()
 		emit_signal("killed")
+	else:
+		var fx = preload("res://projectiles/particles_deflected.tscn").instance()
+		fx.position = point
+		fx.rotation_degrees = 180
+		get_parent().add_child(fx)

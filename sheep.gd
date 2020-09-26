@@ -47,7 +47,7 @@ func _physics_process(delta):
 	
 	move_and_collide(velocity * delta)
 
-func take_damage(amount):
+func take_damage(amount, point):
 	health -= amount
 	emit_signal("hit")
 	$"../camera".add_trauma(1)
