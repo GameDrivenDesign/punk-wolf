@@ -4,9 +4,6 @@ var speed = 800
 var damage = 10
 var target_group = "sheep"
 
-#func set_color(i):
-#	set_modulate(Global.PROJECTILE_COLORS[i])
-
 func set_color(color:Color):
 	set_modulate(color)
 
