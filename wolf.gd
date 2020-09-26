@@ -19,7 +19,8 @@ var short_time: float = 0
 func _ready():
 	current_spawn = randf() * 3
 	to_right = true if randf() > 0.5 else false
-	position_right = get_viewport_rect().size.x
+	position_right = get_viewport_rect().size.x - Global.PADDING_HORIZONTAL.y
+	position_left = Global.PADDING_HORIZONTAL.x
 
 func _physics_process(delta: float):
 	if to_right:

@@ -27,6 +27,18 @@ decay = 3.0
 max_offset = Vector2( 50, 25 )
 max_roll = 0.1
 
+[node name="CanvasLayer" type="CanvasLayer" parent="camera"]
+
+[node name="Label" type="Label" parent="camera/CanvasLayer"]
+margin_left = 1491.32
+margin_top = 45.306
+margin_right = 1531.32
+margin_bottom = 59.306
+text = "0000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="background" type="Sprite" parent="."]
 position = Vector2( 798.055, 452.563 )
 texture = ExtResource( 1 )

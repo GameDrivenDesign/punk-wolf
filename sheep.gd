@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal hit
+
 export (int) var speed = 200
 
 var velocity = Vector2()
@@ -47,4 +49,5 @@ func _physics_process(delta):
 
 func take_damage(amount):
 	health -= amount
+	emit_signal("hit")
 	$"../camera".add_trauma(1)
