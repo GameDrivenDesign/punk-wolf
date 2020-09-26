@@ -1,9 +1,12 @@
 extends KinematicBody2D
 
+signal hit
+
 export (int) var speed = 200
 
 var velocity = Vector2()
-var health = 100
+const max_hitpoints = 500
+var hitpoints = max_hitpoints
 
 const CANNON_TIMEOUT = 1
 const TWOSHOT_INTERVAL = 0.1
@@ -35,6 +38,7 @@ func shoot(cannon_index):
 	if timeout_cannons[cannon_index] <= 0:
 		var p = preload("res://projectiles/Projectile.tscn").instance()
 		p.rotation_degrees = 180
+		p.speed = 1500
 		p.target_group = "wolf"
 		
 		if was_shot_recently((cannon_index + 1) % 2):
@@ -62,6 +66,7 @@ func _physics_process(delta):
 	
 	move_and_collide(velocity * delta)
 
-func take_damage(amount):
-	health -= amount
+func take_damage(amount, point):
+	hitpoints -= amount
+	emit_signal("hit")
 	$"../camera".add_trauma(1)

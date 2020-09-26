@@ -1,3 +1,5 @@
+# https://kidscancode.org/godot_recipes/2d/screen_shake/
+
 extends Camera2D
 class_name ShakeCamera2D
 
