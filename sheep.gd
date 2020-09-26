@@ -6,7 +6,9 @@ var velocity = Vector2()
 var health = 100
 
 const CANNON_TIMEOUT = 1
+const TWOSHOT_INTERVAL = 0.1
 var timeout_cannons = [0, 0]
+var last_projectile
 
 func _ready():
 	add_child(preload("res://shield.tscn").instance())
@@ -26,15 +28,31 @@ func get_input():
 	
 	velocity = velocity.normalized() * speed
 
+func was_shot_recently(cannon_index):
+	return timeout_cannons[cannon_index] >= CANNON_TIMEOUT - TWOSHOT_INTERVAL
+
 func shoot(cannon_index):
 	if timeout_cannons[cannon_index] <= 0:
 		var p = preload("res://projectiles/Projectile.tscn").instance()
 		p.rotation_degrees = 180
 		p.target_group = "wolf"
-		p.position = global_position
-		p.set_modulate(Color(1, 4, 1))
+		
+		if was_shot_recently((cannon_index + 1) % 2):
+			p.position = $MiddleSpawnPosition.global_position
+			p.scale.y = 4
+			p.set_modulate(Color(4, 4, 4))
+			
+			if last_projectile != null and last_projectile.is_inside_tree():
+				last_projectile.queue_free()
+			
+		else:
+			p.position = ($RightProjectileSpawn if cannon_index == 0 else $LeftProjectileSpawn).global_position
+			p.set_modulate(Color(1, 4, 1) if cannon_index == 0 else Color(4, 4, 1))
+			last_projectile = p
+			
 		get_parent().add_child(p)
 		timeout_cannons[cannon_index] = CANNON_TIMEOUT
+
 
 func _physics_process(delta):
 	get_input()
