@@ -4,7 +4,7 @@
 [ext_resource path="res://sheep.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 27.7458, 31.5186 )
+extents = Vector2( 27.7458, 27.956 )
 
 [node name="Sheep" type="KinematicBody2D" groups=[
 "sheep",
