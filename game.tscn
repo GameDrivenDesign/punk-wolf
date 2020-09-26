@@ -26,7 +26,6 @@ current = true
 script = ExtResource( 4 )
 decay = 3.0
 max_offset = Vector2( 50, 25 )
-max_roll = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="camera"]
 
