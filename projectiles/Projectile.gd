@@ -13,7 +13,7 @@ func _ready():
 	set_modulate(colors[randi()%5])
 
 func _physics_process(delta):
-	var coll = move_and_collide(DIRECTION * delta * SPEED)
+	var coll = move_and_collide(transform.y * delta * SPEED)
 	if coll and coll.collider.is_in_group("sheep"):
 		coll.collider.take_damage(DAMAGE)
 		queue_free()
