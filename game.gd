@@ -4,12 +4,21 @@ var enemy_count = 0
 var stage_count = 0
 var score: int = 0
 
+var music_loop_current = 0
+var music_loop_fade_active = false
+var music_loop_fade_target = 0
+const FADE_DURATION = 1 #s
+const LOOP_DURATION = 16 #s, every loop has the same length
+
 func _ready():
 	stage_count = 0
 	next_stage()
 	var err = $Sheep.connect("hit", self, "sheep_hit")
 	if (err != OK):
 		print(err)
+		
+func _process(delta):
+	fade_music_if_needed(delta)
 
 func spawn_enemy(file):
 	var enemy = load(file).instance()
@@ -110,3 +119,41 @@ func next_stage():
 func gameover():
 	Global.highscore = score
 	get_tree().change_scene("res://gameover.tscn")
+
+func fade_music_if_needed(delta):
+	# handle active fade
+	if music_loop_fade_active:
+		var current = get_node("Music").get_child(music_loop_current)
+		var target = get_node("Music").get_child(music_loop_fade_target)
+		
+		var progress = 0.0
+		
+		var pos = current.get_playback_position()
+		if pos > LOOP_DURATION / 2.0:
+			# end of loop
+			progress = (pos - (LOOP_DURATION - FADE_DURATION / 2.0)) / FADE_DURATION
+		else:
+			# already start of new loop
+			progress = (pos + FADE_DURATION / 2.0) / FADE_DURATION
+			
+			
+		var clamped = clamp(progress, 0.0, 1.0)
+		current.volume_db = -pow(2.0, clamped * 4.0) - 1.0
+		target.volume_db = -pow(2.0, (1.0 - clamped) * 4.0) - 1.0
+		
+		print("progress: ", progress)
+		
+		if progress > 1.0:
+			music_loop_fade_active = false
+			music_loop_current = music_loop_fade_target
+			
+	# activate fade, if necessary
+	if not music_loop_fade_active:
+		if music_loop_current != stage_count:
+			# only start fade if it wouldn't sound bad
+			var current = get_node("Music").get_child(music_loop_current)
+			var pos = current.get_playback_position()
+			if pos >= LOOP_DURATION / 2.0 and pos < LOOP_DURATION - FADE_DURATION / 2.0:
+				print("starting fade")
+				music_loop_fade_target = stage_count
+				music_loop_fade_active = true
