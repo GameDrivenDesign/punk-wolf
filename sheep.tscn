@@ -54,14 +54,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RightProjectileSpawn" type="Position2D" parent="."]
+position = Vector2( 19, -30 )
+
+[node name="LeftProjectileSpawn" type="Position2D" parent="."]
+position = Vector2( -19, -30 )
+
+[node name="MiddleSpawnPosition" type="Position2D" parent="."]
+position = Vector2( 0, -30 )
+
 [node name="LaserPlayer0" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 3 )
-bus = "SFX"
 
 [node name="LaserPlayer1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
-bus = "SFX"
 
 [node name="ImpactPlayer" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
-bus = "SFX"
