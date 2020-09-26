@@ -2,6 +2,7 @@ extends Node2D
 
 func _ready():
 	$score.text = str(Global.highscore)
+	$TextEdit.grab_focus()
 
 # Send a highscore to the server.
 # Returns the position on the scoreboard (1-based).
@@ -24,8 +25,8 @@ func send_highscore(game: String, player: String, score: int):
 	
 	var position = JSON.parse(response[3].get_string_from_utf8()).result["position"]
 	print("Highscore submitted! - You scored position " + str(position))
+	get_tree().change_scene("res://newgame.tscn")
 	return position
 
 func _on_Button_pressed():
 	send_highscore(Global.GAME_NAME, $TextEdit.text, Global.highscore)
-	get_tree().change_scene("res://newgame.tscn")
