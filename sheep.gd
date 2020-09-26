@@ -39,6 +39,7 @@ func shoot(cannon_index):
 		p.set_modulate(Color(1, 4, 1))
 		get_parent().add_child(p)
 		timeout_cannons[cannon_index] = CANNON_TIMEOUT
+		get_node("LaserPlayer" + cannon_index as String).play()
 
 func _physics_process(delta):
 	get_input()
@@ -52,3 +53,4 @@ func take_damage(amount, point):
 	hitpoints -= amount
 	emit_signal("hit")
 	$"../camera".add_trauma(1)
+	$ImpactPlayer.play()
