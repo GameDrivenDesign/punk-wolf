@@ -47,6 +47,7 @@ func _physics_process(delta: float):
 			if shoot_spread_angle > 0:
 				spawn_projectile().rotation_degrees = shoot_spread_angle
 				spawn_projectile().rotation_degrees = -shoot_spread_angle
+			$LaserPlayer.play()
 
 func spawn_projectile():
 	var projectile = preload("res://projectiles/Projectile.tscn").instance()
@@ -69,3 +70,4 @@ func take_damage(damage, point):
 		fx.position = point
 		fx.rotation_degrees = 180
 		get_parent().add_child(fx)
+		$ImpactPlayer.play()

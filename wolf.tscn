@@ -1,6 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://sounds/enemy_laser.wav" type="AudioStream" id=1]
 [ext_resource path="res://wolf.gd" type="Script" id=2]
+[ext_resource path="res://sounds/enemy_impact.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 26.9966, 26.4577 )
@@ -35,3 +37,12 @@ __meta__ = {
 
 [node name="ProjectileSpawn" type="Position2D" parent="."]
 position = Vector2( 0, 22.3611 )
+
+[node name="LaserPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 1 )
+volume_db = -12.0
+bus = "SFX"
+
+[node name="ImpactPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+bus = "SFX"
