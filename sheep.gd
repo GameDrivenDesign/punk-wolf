@@ -26,3 +26,4 @@ func _physics_process(delta):
 
 func take_damage(amount):
 	health -= amount
+	$"../camera".add_trauma(1)
