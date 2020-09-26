@@ -2,21 +2,26 @@ extends KinematicBody2D
 
 const SPEED = 100.0  
 var to_right = true
-var position_right = Vector2(800,0)
-var position_left = Vector2(0,0)
+var position_right = 0
+var position_left = 0
 var direction
 
 const SPAWN_TIME = 1 #s
 var current_spawn = 0
 
+func _ready():
+	current_spawn = randf()
+	to_right = true if randf() > 0.5 else false
+	position_right = get_viewport_rect().size.x
+
 func _physics_process(delta):
 	if to_right:
-		direction = (position_right - position).normalized()
+		direction = Vector2(position_right - position.x, 0).normalized()
 	else: 
-		direction = (position_left -position).normalized()
+		direction = Vector2(position_left - position.x, 0).normalized()
 	var motion = direction * SPEED * delta
 	position += motion
-	if position_right <= position || position_left >= position:
+	if position_right <= position.x || position_left >= position.x:
 		to_right = not to_right
 
 	current_spawn += delta
