@@ -10,6 +10,8 @@ func get_input():
 		velocity.x += 1
 	if Input.is_action_pressed('ui_left'):
 		velocity.x -= 1
+	if Input.is_action_just_pressed("ui_accept"):
+		add_child(preload("res://shield.tscn").instance())
 	velocity = velocity.normalized() * speed
 
 func _physics_process(delta):
