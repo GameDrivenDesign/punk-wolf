@@ -63,7 +63,7 @@ func next_stage():
 		var positions = [150, 400, 700, 780]
 		for i in range(4):
 			var e = spawn_enemy("res://wolf.tscn")
-			e.shoot_spread_angle = 15
+			e.shoot_spread_angle = 25
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
 	elif stage_count == 2:
@@ -85,7 +85,7 @@ func next_stage():
 			e.shoot_short_interval = 0.3
 			e.shoot_spawn_interval = 0.01
 			e.shoot_projectile_speed = 600
-			e.change_hitpoints(110)
+			e.change_hitpoints(140)
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
 	elif stage_count == 4:

@@ -5,12 +5,6 @@ const SHIELD_COLOR_TOLERANCE = 0.3
 var r = 1
 var b = 1
 
-func _ready():
-	#$AnimationPlayer.play("open", -1, 8)
-	#yield($AnimationPlayer, "animation_finished")
-	#queue_free()
-	pass
-
 func is_blocked(projectile):
 	var projectile_color = projectile.get_modulate()
 	var color = get_modulate()
@@ -31,4 +25,4 @@ func _process(delta):
 	r = max(1, min(4, r))
 	b = max(1, min(4, b))
 	
-	set_modulate(Color(r, 1, b))
+	set_modulate(Color(r, 1, b, min(1, r - 1 + b - 1)))
