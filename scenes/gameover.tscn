@@ -4,7 +4,6 @@
 [ext_resource path="res://fonts/audiowide.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/audiowide-large.tres" type="DynamicFont" id=3]
 
-
 [node name="gameover" type="Node2D"]
 script = ExtResource( 1 )
 
@@ -62,5 +61,17 @@ text = "Submit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Button2" type="Button" parent="."]
+margin_left = 792.026
+margin_top = 535.427
+margin_right = 865.026
+margin_bottom = 562.427
+custom_fonts/font = ExtResource( 2 )
+text = "Skip"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="text_entered" from="TextEdit" to="." method="_on_TextEdit_text_entered"]
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_SkipButton_pressed"]

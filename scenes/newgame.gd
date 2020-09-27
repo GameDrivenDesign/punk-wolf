@@ -2,11 +2,13 @@ extends Node2D
 
 func _input(event):
 	if event is InputEventKey:
+		Global.useFourColors = $FourColorsCheckBox.pressed
 		var err = get_tree().change_scene("res://game.tscn")
 		if err != OK:
 			print(err)
 
 func _ready():
+	$FourColorsCheckBox.pressed = Global.useFourColors
 	get_current_highscore()
 
 func get_current_highscore():

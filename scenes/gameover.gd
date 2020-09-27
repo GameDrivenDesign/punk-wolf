@@ -41,3 +41,6 @@ func _on_Button_pressed():
 
 func _on_TextEdit_text_entered(_new_text):
 	send_my_highscore()
+
+func _on_SkipButton_pressed():
+	get_tree().change_scene("res://scenes/newgame.tscn")

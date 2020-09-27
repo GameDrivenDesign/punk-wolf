@@ -8,6 +8,11 @@ var shieldColor
 
 func _ready():
 	shieldColor = RED if isRed else BLUE
+	if Global.useFourColors:
+		$Top.visible = false
+		$Bottom.margin_top = 5
+		$Bottom.margin_bottom = 45
+		rect_size.y = 50
 
 func _on_game_shield_changed(isRedShield:bool, index:int):
 	if isRed != isRedShield:

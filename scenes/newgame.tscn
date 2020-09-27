@@ -58,3 +58,14 @@ RIGHT   move right"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FourColorsCheckBox" type="CheckBox" parent="."]
+margin_left = 1061.36
+margin_top = 703.585
+margin_right = 1278.36
+margin_bottom = 732.585
+custom_fonts/font = ExtResource( 4 )
+text = "Use four color-shield"
+__meta__ = {
+"_edit_use_anchors_": false
+}
