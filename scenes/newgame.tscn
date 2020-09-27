@@ -59,6 +59,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="AutoCritCheckBox" type="CheckBox" parent="."]
+margin_left = 1061.0
+margin_top = 677.0
+margin_right = 1231.0
+margin_bottom = 706.0
+custom_fonts/font = ExtResource( 4 )
+text = "Auto Double Hit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="FourColorsCheckBox" type="CheckBox" parent="."]
 margin_left = 1061.36
 margin_top = 703.585

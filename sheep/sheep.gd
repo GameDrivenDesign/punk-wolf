@@ -32,13 +32,13 @@ func process_input():
 		
 	if Input.is_action_just_pressed("shoot_0"):
 		shoot(0)
-	if Input.is_action_just_pressed("shoot_1"):
+	if Input.is_action_just_pressed("shoot_1") and not Global.useAutoCrits:
 		shoot(1)
 	
 	velocity = velocity.normalized() * speed
 
 func was_shot_recently(cannon_index):
-	return timeout_cannons[cannon_index] >= CANNON_TIMEOUT - TWOSHOT_INTERVAL
+	return Global.useAutoCrits or timeout_cannons[cannon_index] >= CANNON_TIMEOUT - TWOSHOT_INTERVAL
 
 func shoot(cannon_index):
 	if timeout_cannons[cannon_index] <= 0:
