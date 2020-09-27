@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Punk-wolf"
-run/main_scene="res://newgame.tscn"
+run/main_scene="res://scenes/newgame.tscn"
 config/icon="res://icon.png"
 
 [autoload]

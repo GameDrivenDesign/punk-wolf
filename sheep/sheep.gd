@@ -14,7 +14,7 @@ var timeout_cannons = [0, 0]
 var last_projectile
 
 func _ready():
-	add_child(preload("res://shield.tscn").instance())
+	add_child(preload("res://sheep/shield.tscn").instance())
 
 func process_input():
 	velocity = Vector2()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sheep.svg-ffd0ddbce5a2c04493ba4fa301ae8300.stex"
+path="res://.import/shield.svg-1f1f4773cf4efc948b437408e69b988e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sheep.svg"
-dest_files=[ "res://.import/sheep.svg-ffd0ddbce5a2c04493ba4fa301ae8300.stex" ]
+source_file="res://sheep/shield.svg"
+dest_files=[ "res://.import/shield.svg-1f1f4773cf4efc948b437408e69b988e.stex" ]
 
 [params]
 
