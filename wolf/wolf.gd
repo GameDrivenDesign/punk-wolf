@@ -20,12 +20,18 @@ var current_spawn: float = 0
 #var color_index: int = randi() % 5
 var color: Color = Global.rb
 var short_time: float = 0
+var color_change_timemout = INF #in seconds
+var color_change_time = 0
 
 func _ready():
 	current_spawn = randf() * 3
 	to_right = true if randf() > 0.5 else false
 	position_right = get_viewport_rect().size.x - Global.PADDING_HORIZONTAL.y
 	position_left = Global.PADDING_HORIZONTAL.x
+
+func set_color_change_timeout(timeout):
+	color_change_timemout = timeout
+	color_change_time = 0
 
 func change_hitpoints(num):
 	max_hitpoints = num
@@ -41,6 +47,11 @@ func _physics_process(delta: float):
 	if position_right <= position.x || position_left >= position.x:
 		to_right = not to_right
 
+	color_change_time += delta
+	if color_change_time >= color_change_timemout:
+		change_projectile_color()
+		color_change_time = 0
+
 	current_spawn += delta
 	short_time += delta
 	if current_spawn >= shoot_long_interval:
@@ -55,6 +66,9 @@ func _physics_process(delta: float):
 				spawn_projectile().rotation_degrees = shoot_spread_angle
 				spawn_projectile().rotation_degrees = -shoot_spread_angle
 			$LaserPlayer.play()
+
+func change_projectile_color():
+	color = Global.PROJECTILE_COLORS[randi() % len(Global.PROJECTILE_COLORS)]
 
 func spawn_projectile():
 	var projectile = preload("res://projectiles/Projectile.tscn").instance()

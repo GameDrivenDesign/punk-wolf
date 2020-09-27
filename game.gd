@@ -14,7 +14,7 @@ const FADE_DURATION = 1 #s
 const LOOP_DURATION = 2 #s, every loop has the same length
 
 func _ready():
-	stage_count = 0
+	stage_count = 4
 	next_stage()
 	var err = $Sheep.connect("hit", self, "sheep_hit")
 	if (err != OK):
@@ -121,6 +121,7 @@ func next_stage():
 			e.shoot_spawn_interval = 0.1
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
+			e.set_color_change_timeout(5)
 	else:
 		gameover()
 
