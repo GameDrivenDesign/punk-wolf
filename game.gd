@@ -1,5 +1,8 @@
 extends Node2D
 
+# warning-ignore:unused_signal
+signal shield_changed
+
 var enemy_count = 0
 var stage_count = 0
 var score: int = 0
