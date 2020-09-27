@@ -2,7 +2,9 @@ extends Node2D
 
 func _input(event):
 	if event is InputEventKey:
-		get_tree().change_scene("res://game.tscn")
+		var err = get_tree().change_scene("res://game.tscn")
+		if err != OK:
+			print(err)
 
 func _ready():
 	get_current_highscore()
