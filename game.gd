@@ -7,9 +7,9 @@ var enemy_count = 0
 var stage_count = 0
 var score: int = 0
 
-var music_loop_current = 0
+var music_loop_current = 1
 var music_loop_fade_active = false
-var music_loop_fade_target = 0
+var music_loop_fade_target = 1
 const FADE_DURATION = 1 #s
 const LOOP_DURATION = 2 #s, every loop has the same length
 
@@ -131,13 +131,13 @@ func gameover():
 		print(err)
 
 func fade_music_if_needed(_delta):
-	if stage_count >= len(get_node("Music").get_children()):
+	if stage_count <= 0 || stage_count - 1 >= len(get_node("Music").get_children()):
 		return
 	
 	# handle active fade
 	if music_loop_fade_active:
-		var current = get_node("Music").get_child(music_loop_current)
-		var target = get_node("Music").get_child(music_loop_fade_target)
+		var current = get_node("Music").get_child(music_loop_current - 1)
+		var target = get_node("Music").get_child(music_loop_fade_target - 1)
 		
 		var progress = 0.0 # will range from 0.0 to 1.0
 		
@@ -162,7 +162,7 @@ func fade_music_if_needed(_delta):
 	if not music_loop_fade_active:
 		if music_loop_current != stage_count:
 			# only start fade if it wouldn't sound bad
-			var current = get_node("Music").get_child(music_loop_current)
+			var current = get_node("Music").get_child(music_loop_current - 1)
 			var pos = fmod(current.get_playback_position(), 2.0)
 			if pos >= LOOP_DURATION / 2.0 and pos < LOOP_DURATION - FADE_DURATION / 2.0:
 				music_loop_fade_target = stage_count

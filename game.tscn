@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://background.svg" type="Texture" id=1]
-[ext_resource path="res://sounds/intro.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/level_5.wav" type="AudioStream" id=2]
 [ext_resource path="res://sheep/sheep.tscn" type="PackedScene" id=3]
 [ext_resource path="res://ShakeCamera2D.gd" type="Script" id=4]
 [ext_resource path="res://game.gd" type="Script" id=5]
@@ -98,14 +98,8 @@ environment = SubResource( 1 )
 
 [node name="Music" type="Node" parent="."]
 
-[node name="IntroPlayer" type="AudioStreamPlayer" parent="Music"]
-stream = ExtResource( 2 )
-autoplay = true
-bus = "Music"
-
 [node name="Level1Player" type="AudioStreamPlayer" parent="Music"]
 stream = ExtResource( 9 )
-volume_db = -80.0
 autoplay = true
 bus = "Music"
 
@@ -126,5 +120,11 @@ stream = ExtResource( 7 )
 volume_db = -80.0
 autoplay = true
 bus = "Music"
-[connection signal="shield_changed" from="." to="BlueShieldMeter" method="_on_game_shield_changed"]
+
+[node name="Level5Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 2 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
 [connection signal="shield_changed" from="." to="RedShieldMeter" method="_on_game_shield_changed"]
+[connection signal="shield_changed" from="." to="BlueShieldMeter" method="_on_game_shield_changed"]
