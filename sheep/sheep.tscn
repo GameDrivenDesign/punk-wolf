@@ -7,7 +7,6 @@
 [ext_resource path="res://sounds/player_impact.wav" type="AudioStream" id=5]
 [ext_resource path="res://sounds/robot_sheep.wav" type="AudioStream" id=6]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 27.7458, 27.956 )
 
