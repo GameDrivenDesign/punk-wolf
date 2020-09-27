@@ -133,7 +133,7 @@ func fade_music_if_needed(_delta):
 		
 		var progress = 0.0 # will range from 0.0 to 1.0
 		
-		var pos = current.get_playback_position()
+		var pos = fmod(current.get_playback_position(), 2.0)
 		if pos > LOOP_DURATION / 2.0:
 			# end of loop
 			progress = (pos - (LOOP_DURATION - FADE_DURATION / 2.0)) / FADE_DURATION
@@ -155,7 +155,7 @@ func fade_music_if_needed(_delta):
 		if music_loop_current != stage_count:
 			# only start fade if it wouldn't sound bad
 			var current = get_node("Music").get_child(music_loop_current)
-			var pos = current.get_playback_position()
+			var pos = fmod(current.get_playback_position(), 2.0)
 			if pos >= LOOP_DURATION / 2.0 and pos < LOOP_DURATION - FADE_DURATION / 2.0:
 				music_loop_fade_target = stage_count
 				music_loop_fade_active = true
