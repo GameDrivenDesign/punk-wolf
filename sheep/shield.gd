@@ -37,4 +37,4 @@ func _process(_delta):
 	var r = colors[r_index]
 	var b = colors[b_index]
 	
-	set_modulate(Color(r, 1, b, 1 if Global.useFourColors else min(1, r - 1 + b - 1)))
+	set_modulate(Color(r, 1, b, 1.0 if Global.useFourColors else min(1, r - 1 + b - 1)))
