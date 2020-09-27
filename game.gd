@@ -14,7 +14,7 @@ const FADE_DURATION = 1 #s
 const LOOP_DURATION = 2 #s, every loop has the same length
 
 func _ready():
-	stage_count = 4
+	stage_count = 0
 	next_stage()
 	var err = $Sheep.connect("hit", self, "sheep_hit")
 	if (err != OK):
