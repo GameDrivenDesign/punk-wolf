@@ -7,8 +7,8 @@ var to_right = true
 var position_right: float = 0
 var position_left: float = 0
 var direction: Vector2
-const MAX_HITPOINTS = 35
-var hitpoints = MAX_HITPOINTS
+var max_hitpoints = 35
+var hitpoints = max_hitpoints
 
 var shoot_spread_angle = 0
 var shoot_short_interval = 1 #s
@@ -26,6 +26,10 @@ func _ready():
 	to_right = true if randf() > 0.5 else false
 	position_right = get_viewport_rect().size.x - Global.PADDING_HORIZONTAL.y
 	position_left = Global.PADDING_HORIZONTAL.x
+
+func change_hitpoints(num):
+	max_hitpoints = num
+	hitpoints = num
 
 func _physics_process(delta: float):
 	if to_right:
@@ -63,7 +67,7 @@ func spawn_projectile():
 
 func take_damage(damage, point):
 	hitpoints -= damage
-	$Eyes.set_modulate(Color(2.5 * (hitpoints / float(MAX_HITPOINTS)) + 0.2, 1, 1))
+	$Eyes.set_modulate(Color(2.5 * (hitpoints / float(max_hitpoints)) + 0.2, 1, 1))
 	
 	if hitpoints <= 0:
 		var fx = preload("res://projectiles/particles_ship_explodes.tscn").instance()

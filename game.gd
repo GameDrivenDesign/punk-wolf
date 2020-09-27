@@ -8,7 +8,7 @@ var music_loop_current = 0
 var music_loop_fade_active = false
 var music_loop_fade_target = 0
 const FADE_DURATION = 1 #s
-const LOOP_DURATION = 16 #s, every loop has the same length
+const LOOP_DURATION = 2 #s, every loop has the same length
 
 func _ready():
 	stage_count = 0
@@ -16,7 +16,7 @@ func _ready():
 	var err = $Sheep.connect("hit", self, "sheep_hit")
 	if (err != OK):
 		print(err)
-		
+
 func _process(delta):
 	fade_music_if_needed(delta)
 
@@ -81,8 +81,11 @@ func next_stage():
 		for i in range(4):
 			var e = spawn_enemy("res://wolf.tscn")
 			e.shoot_spread_angle = 5
-			e.shoot_long_interval = 0.9
-			e.shoot_spawn_interval = 0.1
+			e.shoot_long_interval = 1.9
+			e.shoot_short_interval = 0.3
+			e.shoot_spawn_interval = 0.01
+			e.shoot_projectile_speed = 600
+			e.change_hitpoints(110)
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
 	elif stage_count == 4:
@@ -144,7 +147,7 @@ func fade_music_if_needed(delta):
 		if progress > 1.0:
 			music_loop_fade_active = false
 			music_loop_current = music_loop_fade_target
-			
+	
 	# activate fade, if necessary
 	if not music_loop_fade_active:
 		if music_loop_current != stage_count:
