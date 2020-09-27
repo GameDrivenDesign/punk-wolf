@@ -101,7 +101,7 @@ func next_stage():
 	elif stage_count == 5:
 		var positions = [200, 400, 500, 700, 800]
 		var colors = [Global.rrb, Global.rbb, Global.rbb, Global.rrb, Global.r]
-		for i in range(5):
+		for _i in range(5):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.hitpoints = 200
 			e.shoot_spawn_interval = 0.5
@@ -121,9 +121,11 @@ func next_stage():
 
 func gameover():
 	Global.highscore = score
-	get_tree().change_scene("res://scenes/gameover.tscn")
+	var err = get_tree().change_scene("res://scenes/gameover.tscn")
+	if err != OK:
+		print(err)
 
-func fade_music_if_needed(delta):
+func fade_music_if_needed(_delta):
 	# handle active fade
 	if music_loop_fade_active:
 		var current = get_node("Music").get_child(music_loop_current)
@@ -131,7 +133,7 @@ func fade_music_if_needed(delta):
 		
 		var progress = 0.0 # will range from 0.0 to 1.0
 		
-		var pos = current.get_playback_position()
+		var pos = fmod(current.get_playback_position(), 2.0)
 		if pos > LOOP_DURATION / 2.0:
 			# end of loop
 			progress = (pos - (LOOP_DURATION - FADE_DURATION / 2.0)) / FADE_DURATION
@@ -153,7 +155,7 @@ func fade_music_if_needed(delta):
 		if music_loop_current != stage_count:
 			# only start fade if it wouldn't sound bad
 			var current = get_node("Music").get_child(music_loop_current)
-			var pos = current.get_playback_position()
+			var pos = fmod(current.get_playback_position(), 2.0)
 			if pos >= LOOP_DURATION / 2.0 and pos < LOOP_DURATION - FADE_DURATION / 2.0:
 				music_loop_fade_target = stage_count
 				music_loop_fade_active = true
