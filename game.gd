@@ -101,7 +101,7 @@ func next_stage():
 	elif stage_count == 5:
 		var positions = [200, 400, 500, 700, 800]
 		var colors = [Global.rrb, Global.rbb, Global.rbb, Global.rrb, Global.r]
-		for i in range(5):
+		for _i in range(5):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.hitpoints = 200
 			e.shoot_spawn_interval = 0.5
@@ -121,9 +121,11 @@ func next_stage():
 
 func gameover():
 	Global.highscore = score
-	get_tree().change_scene("res://scenes/gameover.tscn")
+	var err = get_tree().change_scene("res://scenes/gameover.tscn")
+	if err != OK:
+		print(err)
 
-func fade_music_if_needed(delta):
+func fade_music_if_needed(_delta):
 	# handle active fade
 	if music_loop_fade_active:
 		var current = get_node("Music").get_child(music_loop_current)
