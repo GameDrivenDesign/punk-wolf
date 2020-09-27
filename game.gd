@@ -92,6 +92,7 @@ func next_stage():
 			e.change_hitpoints(140)
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
+			e.set_color_change_timeout(3)
 	elif stage_count == 4:
 		var colors = [Global.r, Global.rrb, Global.rb, Global.rbb, Global.b, Global.rbb, Global.rb, Global.rrb, Global.r]
 		var positions = [100, 200, 300, 400, 500, 600, 700, 800, 900]
