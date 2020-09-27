@@ -22,3 +22,4 @@ func _on_Projectile_area_entered(area):
 			fx.position = global_position
 			get_parent().add_child(fx)
 			queue_free()
+			area.block_registered()

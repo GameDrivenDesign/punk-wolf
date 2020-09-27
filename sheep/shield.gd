@@ -8,6 +8,7 @@ var colors = [1, 4] if Global.useFourColors else [1, 2.5, 4]
 
 # warning-ignore:unused_signal
 signal shield_changed
+signal blocked
 
 func is_blocked(projectile):
 	var projectile_color = projectile.get_modulate()
@@ -19,6 +20,9 @@ func is_blocked(projectile):
 		shield_vector.x == shield_vector.y && shield_vector.x == shield_vector.z):
 		return true
 	return projectile_vector.distance_to(shield_vector) < SHIELD_COLOR_TOLERANCE
+
+func block_registered():
+	emit_signal("blocked")
 
 func _process(_delta):
 	if Global.useFourColors:

@@ -1,6 +1,7 @@
 extends KinematicBody2D
 
 signal hit
+signal blocked
 
 export (int) var speed = 300
 
@@ -14,7 +15,7 @@ var timeout_cannons = [0, 0]
 var last_projectile
 
 func _ready():
-	add_child(preload("res://sheep/shield.tscn").instance())
+	$Shield.connect("blocked", self, "emit_signal", ["blocked"])
 
 func process_input():
 	velocity = Vector2()
