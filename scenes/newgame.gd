@@ -14,9 +14,11 @@ func _ready():
 	$FourColorsCheckBox.pressed = Global.useFourColors
 	$AutoCritCheckBox.pressed = Global.useAutoCrits
 	get_current_highscore()
-	
+	$Music/StartPlayer.connect("finished", $Music/LoopPlayer, "play")
+
 func _process(delta):
-	fade_music_if_needed(delta)
+	# fade_music_if_needed(delta)
+	pass
 
 func get_current_highscore():
 	var http_request = HTTPRequest.new()
