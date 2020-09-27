@@ -10,8 +10,8 @@ var score: int = 0
 var music_loop_current = 1
 var music_loop_fade_active = false
 var music_loop_fade_target = 1
-const FADE_DURATION = 1 #s
-const LOOP_DURATION = 2 #s, every loop has the same length
+const FADE_DURATION = 1.0 #s
+const LOOP_DURATION = 2.0 #s, every loop has the same length
 
 func _ready():
 	stage_count = 0
@@ -153,8 +153,8 @@ func fade_music_if_needed(_delta):
 			
 			
 		var clamped = clamp(progress, 0.0, 1.0) # since it's started far before the actual fading should happen, this needs to be clamped
-		current.volume_db = -pow(2.0, clamped * 4.0) - 1.0
-		target.volume_db = -pow(2.0, (1.0 - clamped) * 4.0) - 1.0
+		current.volume_db = -pow(2.0, clamped * 4.0) + 1.0
+		target.volume_db = -pow(2.0, (1.0 - clamped) * 4.0) + 1.0
 		
 		if progress > 1.0:
 			music_loop_fade_active = false

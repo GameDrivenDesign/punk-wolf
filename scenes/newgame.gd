@@ -1,5 +1,7 @@
 extends Node2D
 
+const FADE_DURATION = 0.5 #s
+
 func _input(event):
 	if event is InputEventKey:
 		Global.useFourColors = $FourColorsCheckBox.pressed
@@ -12,6 +14,9 @@ func _ready():
 	$FourColorsCheckBox.pressed = Global.useFourColors
 	$AutoCritCheckBox.pressed = Global.useAutoCrits
 	get_current_highscore()
+	
+func _process(delta):
+	fade_music_if_needed(delta)
 
 func get_current_highscore():
 	var http_request = HTTPRequest.new()
@@ -30,3 +35,32 @@ func get_current_highscore():
 	
 	var data = JSON.parse(response[3].get_string_from_utf8()).result[0]
 	$Current.text = "Current Highscore:\n    " + data["player"] + "    " + str(data["score"])
+
+func fade_music_if_needed(_delta):
+	var start = $Music/StartPlayer
+	var loop = $Music/LoopPlayer
+	
+	if loop.volume_db >= 0.0:
+		# finished
+		return
+		
+	var pos = start.get_playback_position()
+	var full = 48.0
+	
+	if not loop.playing:
+		if full - pos < 4.0:
+			loop.play(19.2 - (full - pos))
+		
+	if start.volume_db >= 0.0 && start.get_playback_position() < full / 2.0:
+		return
+	
+	var progress = (pos - (full - FADE_DURATION)) / FADE_DURATION
+	
+	if progress < -50:
+		progress = 1.0
+	
+	print(progress)
+		
+	var clamped = clamp(progress, 0.0, 1.0) # since it's started far before the actual fading should happen, this needs to be clamped
+	start.volume_db = -pow(2.0, clamped * 4.0) + 1.0
+	loop.volume_db = -pow(2.0, (1.0 - clamped) * 4.0) + 1.0
