@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/title-background.png" type="Texture" id=1]
 [ext_resource path="res://scenes/newgame.gd" type="Script" id=2]
 [ext_resource path="res://fonts/audiowide-large.tres" type="DynamicFont" id=3]
+[ext_resource path="res://fonts/audiowide.tres" type="DynamicFont" id=4]
 
 [node name="newgame" type="Node2D"]
 script = ExtResource( 2 )
@@ -36,6 +37,24 @@ custom_colors/font_color = Color( 0.544691, 0.157654, 0.960938, 1 )
 custom_colors/font_color_shadow = Color( 1, 1, 1, 1 )
 custom_constants/shadow_offset_x = 2
 custom_constants/shadow_offset_y = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 1065.95
+margin_top = 753.438
+margin_right = 1538.95
+margin_bottom = 894.438
+custom_fonts/font = ExtResource( 4 )
+custom_constants/shadow_offset_x = 4
+custom_constants/shadow_offset_y = 4
+text = "Q            add red to shield
+E        	    add blue to shield
+UP          shoot cannon 1
+DOWN   shoot cannon 2
+LEFT     move left
+RIGHT   move right"
 __meta__ = {
 "_edit_use_anchors_": false
 }
