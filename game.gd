@@ -67,6 +67,7 @@ func next_stage():
 		for i in range(4):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.shoot_spread_angle = 25
+			e.shoot_long_interval = 2
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
 	elif stage_count == 2:
@@ -84,7 +85,7 @@ func next_stage():
 		for i in range(4):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.shoot_spread_angle = 5
-			e.shoot_long_interval = 1.9
+			e.shoot_long_interval = 2
 			e.shoot_short_interval = 0.3
 			e.shoot_spawn_interval = 0.01
 			e.shoot_projectile_speed = 600
@@ -107,6 +108,7 @@ func next_stage():
 		for _i in range(5):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.hitpoints = 200
+			e.shoot_long_interval = 2
 			e.shoot_spawn_interval = 0.5
 			e.shoot_damage = 30
 			e.shoot_projectile_speed = 400
@@ -115,7 +117,7 @@ func next_stage():
 		for i in range(4):
 			var e = spawn_enemy("res://wolf/wolf.tscn")
 			e.shoot_spread_angle = 5
-			e.shoot_long_interval = 0.9
+			e.shoot_long_interval = 1
 			e.shoot_spawn_interval = 0.1
 			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
 			e.color = colors[i]
@@ -129,6 +131,9 @@ func gameover():
 		print(err)
 
 func fade_music_if_needed(_delta):
+	if stage_count >= len(get_node("Music").get_children()):
+		return
+	
 	# handle active fade
 	if music_loop_fade_active:
 		var current = get_node("Music").get_child(music_loop_current)
