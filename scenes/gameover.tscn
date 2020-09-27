@@ -1,8 +1,9 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://gameover.gd" type="Script" id=1]
+[ext_resource path="res://scenes/gameover.gd" type="Script" id=1]
 [ext_resource path="res://fonts/audiowide.tres" type="DynamicFont" id=2]
 [ext_resource path="res://fonts/audiowide-large.tres" type="DynamicFont" id=3]
+
 
 [node name="gameover" type="Node2D"]
 script = ExtResource( 1 )

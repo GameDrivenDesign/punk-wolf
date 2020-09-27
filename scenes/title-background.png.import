@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shield.svg-aad55dd538917aa89aefd819a0567dfa.stex"
+path="res://.import/title-background.png-251b54ca3c65d14dac6d09704e645842.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://shield.svg"
-dest_files=[ "res://.import/shield.svg-aad55dd538917aa89aefd819a0567dfa.stex" ]
+source_file="res://scenes/title-background.png"
+dest_files=[ "res://.import/title-background.png-251b54ca3c65d14dac6d09704e645842.stex" ]
 
 [params]
 
