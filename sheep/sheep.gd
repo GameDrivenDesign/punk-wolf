@@ -14,29 +14,44 @@ const TWOSHOT_INTERVAL = 0.1
 var timeout_cannons = [0, 0]
 var last_projectile
 
+var is_moving_left = false
+var is_moving_right = false
+
 func _ready():
 	$Shield.connect("blocked", self, "emit_signal", ["blocked"])
 
-func process_input():
+func _move():
 	velocity = Vector2()
 	var left_border = Global.PLAYER_PADDING_HORIZONTAL.x
 	var right_border = get_viewport_rect().size.x - Global.PLAYER_PADDING_HORIZONTAL.y
 	
-	if Input.is_action_pressed('ui_right') && position.x < right_border:
+	if is_moving_right && position.x < right_border:
 		velocity.x += 1
-	if Input.is_action_pressed('ui_left') && position.x > left_border:
+		
+	if is_moving_left && position.x > left_border:
 		velocity.x -= 1
 		
-	if (Input.is_action_pressed('ui_right') && position.x >= right_border) || (Input.is_action_pressed('ui_left') && position.x <= left_border):
+	velocity = velocity.normalized() * speed
+			
+	if (is_moving_right && position.x >= right_border) || (is_moving_left && position.x <= left_border):
 		if not $RobotSheepPlayer.playing:
 			$RobotSheepPlayer.play()
+
+func _input(_event):
+	if Input.is_action_just_pressed("walk_right_on"):
+		is_moving_right = true
+	elif Input.is_action_just_pressed('walk_right_off'):
+		is_moving_right = false
+	
+	if Input.is_action_just_pressed('walk_left_on'):
+		is_moving_left = true
+	elif Input.is_action_just_pressed('walk_left_off'):
+		is_moving_left = false
 		
 	if Input.is_action_just_pressed("shoot_0"):
 		shoot(0)
 	if Input.is_action_just_pressed("shoot_1") and not Global.useAutoCrits:
 		shoot(1)
-	
-	velocity = velocity.normalized() * speed
 
 func was_shot_recently(cannon_index):
 	return Global.useAutoCrits or timeout_cannons[cannon_index] >= CANNON_TIMEOUT - TWOSHOT_INTERVAL
@@ -68,8 +83,7 @@ func shoot(cannon_index):
 
 
 func _physics_process(delta):
-	process_input()
-	
+	_move()
 	timeout_cannons[0] -= delta
 	timeout_cannons[1] -= delta
 	
