@@ -4,7 +4,7 @@ extends Node2D
 signal shield_changed
 
 var enemy_count = 0
-var stage_count = 0
+var stage_count
 var score: int = 0
 
 var music_loop_current = 1
@@ -14,7 +14,7 @@ const FADE_DURATION = 1.0 #s
 const LOOP_DURATION = 2.0 #s, every loop has the same length
 
 func _ready():
-	stage_count = 0
+	stage_count = -1
 	next_stage()
 	if $Sheep.connect("hit", self, "sheep_hit") != OK:
 		pass
@@ -65,7 +65,14 @@ func next_stage():
 	yield(get_tree().create_timer(2), "timeout")
 	$camera/CanvasLayer/readyLabel.visible = false
 	
-	if stage_count == 1:
+	if stage_count == 0:
+		var positions = [100, 200]
+		for i in range(2):
+			var e = spawn_enemy("res://wolf/wolf.tscn")
+			e.shoot_long_interval = 2
+			e.position.x = Global.PADDING_HORIZONTAL.x + positions[i]
+			e.set_color_change_timeout(2)
+	elif stage_count == 1:
 		var colors = [Global.r, Global.rb, Global.r, Global.rbb]
 		var positions = [150, 400, 700, 780]
 		for i in range(4):

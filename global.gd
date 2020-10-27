@@ -11,7 +11,7 @@ const r = Color(4, 1, 1)
 const rb = Color(3.5, 1, 3.5)
 
 var useFourColors = true
-var useAutoCrits = true
+var useAutoCrits = false
 
 const _rrb = Color(4, 1, 2)
 const _rbb = Color(2.5, 1, 4.5)
