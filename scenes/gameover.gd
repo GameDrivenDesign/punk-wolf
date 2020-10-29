@@ -25,10 +25,13 @@ func send_highscore(game: String, player: String, score: int):
 		return -1
 	remove_child(http_request)
 	
-	var position = JSON.parse(response[3].get_string_from_utf8()).result["position"]
-	print("Highscore submitted! - You scored position " + str(position))
+	var res = JSON.parse(response[3].get_string_from_utf8()).result
 	get_tree().change_scene("res://scenes/newgame.tscn")
-	return position
+	if res.has("position"):
+		position = res["position"]
+		print("Highscore submitted! - You scored position " + str(position))
+		return position
+	return -1
 
 func send_my_highscore():
 	if !loading && len($TextEdit.text) > 0:
