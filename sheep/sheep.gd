@@ -38,16 +38,16 @@ func _move():
 			$RobotSheepPlayer.play()
 
 func _input(_event):
-	if Input.is_action_just_pressed("walk_right_on"):
+	if Input.is_action_pressed("ui_right"):
 		is_moving_right = true
-	elif Input.is_action_just_pressed('walk_right_off'):
+	else:
 		is_moving_right = false
 	
-	if Input.is_action_just_pressed('walk_left_on'):
+	if Input.is_action_pressed('ui_left'):
 		is_moving_left = true
-	elif Input.is_action_just_pressed('walk_left_off'):
+	else:
 		is_moving_left = false
-		
+
 	if Input.is_action_just_pressed("shoot_0"):
 		shoot(0)
 	if Input.is_action_just_pressed("shoot_1") and not Global.useAutoCrits:
