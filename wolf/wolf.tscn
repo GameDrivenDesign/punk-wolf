@@ -5,14 +5,13 @@
 [ext_resource path="res://sounds/enemy_impact.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 26.9966, 26.4577 )
+extents = Vector2( 31, 26.4577 )
 
-[node name="Wolf" type="KinematicBody2D" groups=[
-"wolf",
-]]
+[node name="Wolf" type="KinematicBody2D" groups=["wolf"]]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( -9.53674e-07, 0 )
 shape = SubResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

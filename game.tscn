@@ -126,5 +126,6 @@ stream = ExtResource( 2 )
 volume_db = -80.0
 autoplay = true
 bus = "Music"
+
 [connection signal="shield_changed" from="." to="RedShieldMeter" method="_on_game_shield_changed"]
 [connection signal="shield_changed" from="." to="BlueShieldMeter" method="_on_game_shield_changed"]
