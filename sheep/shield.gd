@@ -10,7 +10,6 @@ var colors = [1, 4] if Global.useFourColors else [1, 2.5, 4]
 signal shield_changed
 signal blocked
 
-
 func is_blocked(projectile):
 	var projectile_color = projectile.get_modulate()
 	var color = get_modulate()
@@ -25,8 +24,10 @@ func is_blocked(projectile):
 func block_registered():
 	emit_signal("blocked")
 
+func _ready():
+	_input(0)
+
 func _input(_delta):
-	
 	if Global.useFourColors:
 		r_index = 1 if Input.is_action_pressed("shield_red") else 0
 		b_index = 1 if Input.is_action_pressed("shield_blue") else 0

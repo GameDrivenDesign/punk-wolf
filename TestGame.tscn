@@ -1,0 +1,131 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://background.svg" type="Texture" id=1]
+[ext_resource path="res://sounds/level_5.wav" type="AudioStream" id=2]
+[ext_resource path="res://sheep/sheep.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ShakeCamera2D.gd" type="Script" id=4]
+[ext_resource path="res://TestGame.gd" type="Script" id=5]
+[ext_resource path="res://sounds/level_2.wav" type="AudioStream" id=6]
+[ext_resource path="res://sounds/level_4.wav" type="AudioStream" id=7]
+[ext_resource path="res://sounds/level_3.wav" type="AudioStream" id=8]
+[ext_resource path="res://sounds/level_1.wav" type="AudioStream" id=9]
+[ext_resource path="res://fonts/audiowide-large.tres" type="DynamicFont" id=10]
+[ext_resource path="res://sheep/ShieldMeter.tscn" type="PackedScene" id=12]
+
+[sub_resource type="Environment" id=1]
+background_mode = 4
+glow_enabled = true
+glow_levels/2 = true
+glow_levels/5 = false
+glow_intensity = 0.29
+glow_strength = 0.93
+glow_blend_mode = 1
+glow_hdr_scale = 2.46
+glow_bicubic_upscale = true
+
+[node name="game" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 5 )
+
+[node name="camera" type="Camera2D" parent="."]
+position = Vector2( 800.05, 453.997 )
+current = true
+script = ExtResource( 4 )
+decay = 3.0
+max_offset = Vector2( 50, 25 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="camera"]
+
+[node name="score" type="Label" parent="camera/CanvasLayer"]
+margin_left = 1362.81
+margin_top = 15.6979
+margin_right = 1572.81
+margin_bottom = 57.6979
+custom_fonts/font = ExtResource( 10 )
+text = "0000000"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="hitpoints" type="ColorRect" parent="camera/CanvasLayer"]
+margin_top = 880.0
+margin_right = 1600.0
+margin_bottom = 900.0
+color = Color( 0.984314, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="readyLabel" type="Label" parent="camera/CanvasLayer"]
+margin_left = 696.791
+margin_top = 431.592
+margin_right = 915.791
+margin_bottom = 473.592
+rect_pivot_offset = Vector2( 106.685, 22.0867 )
+custom_fonts/font = ExtResource( 10 )
+text = "GET READY!"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 798.055, 452.563 )
+texture = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="RedShieldMeter" parent="." instance=ExtResource( 12 )]
+margin_left = 290.0
+margin_top = 770.0
+margin_right = 340.0
+margin_bottom = 865.0
+isRed = true
+
+[node name="BlueShieldMeter" parent="." instance=ExtResource( 12 )]
+margin_left = 1178.23
+margin_top = 770.0
+margin_right = 1228.23
+margin_bottom = 865.0
+
+[node name="Sheep" parent="." instance=ExtResource( 3 )]
+position = Vector2( 478.012, 834.516 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
+
+[node name="Music" type="Node" parent="."]
+
+[node name="Level1Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
+
+[node name="Level2Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 6 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
+
+[node name="Level3Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 8 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
+
+[node name="Level4Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 7 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
+
+[node name="Level5Player" type="AudioStreamPlayer" parent="Music"]
+stream = ExtResource( 2 )
+volume_db = -80.0
+autoplay = true
+bus = "Music"
+
+[connection signal="shield_changed" from="." to="RedShieldMeter" method="_on_game_shield_changed"]
+[connection signal="shield_changed" from="." to="BlueShieldMeter" method="_on_game_shield_changed"]

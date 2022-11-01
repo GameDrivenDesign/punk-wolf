@@ -15,7 +15,6 @@ const LOOP_DURATION = 2.0 #s, every loop has the same length
 
 func _ready():
 	stage_count = -1
-	next_stage()
 	if $Sheep.connect("hit", self, "sheep_hit") != OK:
 		pass
 	if $Sheep.connect("blocked", self, "sheep_blocked") != OK:

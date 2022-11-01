@@ -7,9 +7,7 @@
 radius = 114.757
 height = 10.4591
 
-[node name="shield" type="Area2D" groups=[
-"shield",
-]]
+[node name="shield" type="Area2D" groups=["shield"]]
 script = ExtResource( 2 )
 
 [node name="shield" type="Sprite" parent="."]
